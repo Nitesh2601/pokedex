@@ -1,4 +1,5 @@
 // src/server/trpc/router/pokemon.ts
+import { type Pokemon } from '@prisma/client'; // at the top
 
 import { z } from 'zod';
 import { router, publicProcedure } from '../trpc';
@@ -176,10 +177,10 @@ export const pokemonRouter = router({
           const allPokemon = await ctx.prisma.pokemon.findMany();
           console.log("Returning all Pokemon count:", allPokemon.length);
           
-          return allPokemon.map(pokemon => ({
+          return allPokemon.map((pokemon: Pokemon) => ({
             id: pokemon.id,
             name: pokemon.name,
-            types: pokemon.types, // Already an array
+            types: pokemon.types,
             sprite: pokemon.sprite,
           }));
         }
@@ -197,7 +198,7 @@ export const pokemonRouter = router({
         
         console.log("Filtered Pokemon by type count:", pokemonWithType.length);
         
-        return pokemonWithType.map(pokemon => ({
+        return pokemonWithType.map((pokemon: Pokemon) => ({
           id: pokemon.id,
           name: pokemon.name,
           types: pokemon.types, // Already an array
@@ -223,8 +224,8 @@ export const pokemonRouter = router({
         
         // Extract all unique types from the pokemons
         const allTypes = new Set<string>();
-        pokemons.forEach(pokemon => {
-          pokemon.types.forEach(type => {
+        pokemons.forEach((pokemon: { types: string[] }) => {
+          pokemon.types.forEach((type: string) => {
             allTypes.add(type);
           });
         });
