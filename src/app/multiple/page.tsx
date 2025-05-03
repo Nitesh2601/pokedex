@@ -26,7 +26,7 @@ export default function MultiplePokemonPage() {
     { 
       enabled: submitted && pokemonNames.length > 0,
       refetchOnWindowFocus: false,
-      keepPreviousData: true,
+      
       retry: 1,
       staleTime: 300000 // 5 minutes cache like in the single page
     }
