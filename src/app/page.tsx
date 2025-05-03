@@ -86,7 +86,8 @@ export default function PokedexPage() {
         </Paper>
       )}
 
-      {hasValidData && <PokemonRow pokemon={pokemonQuery.data} />}
+      {hasValidData && <PokemonRow pokemon={pokemonQuery.data as { id: number; name: string; types: string[]; sprite: string }} />}
+
     </Container>
   );
 }
