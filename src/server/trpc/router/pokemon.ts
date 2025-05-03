@@ -18,7 +18,8 @@ export const pokemonRouter = router({
       // DEBUG: Print all Pokemon in the database
       console.log("DEBUG: Checking all Pokemon in database");
       const allPokemon = await ctx.prisma.pokemon.findMany();
-      console.log("Pokemon in database:", allPokemon.map(p => p.name));
+      console.log("Pokemon in database:", allPokemon.map((p: { name: string }) => p.name));
+
       
       // First try exact match with lowercase
       let found = await ctx.prisma.pokemon.findFirst({
