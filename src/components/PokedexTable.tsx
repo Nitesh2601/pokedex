@@ -1,10 +1,9 @@
-// src/components/PokedexTable.tsx
 'use client';
 
 import { Box, Typography } from '@mui/material';
 import PokemonRow from './PokemonRow';
 
-interface Pokemon {
+export interface Pokemon {
   id: number;
   name: string;
   types: string[];
