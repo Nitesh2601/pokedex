@@ -15,6 +15,8 @@ import {
 } from '@mui/material';
 import PokedexTable from '@/components/PokedexTable';
 import { trpc } from '@/utils/trpc';
+// Import the Pokemon type from the PokedexTable component
+import type { Pokemon } from '@/components/PokedexTable';
 
 export default function MultiplePokemonPage() {
   const [inputName, setInputName] = useState('');
@@ -180,7 +182,7 @@ export default function MultiplePokemonPage() {
       
       {/* Results - show when we have data */}
       {!pokemonQuery.isLoading && pokemonQuery.data && pokemonQuery.data.length > 0 && (
-        <PokedexTable pokemons={pokemonQuery.data} />
+        <PokedexTable pokemons={pokemonQuery.data as Pokemon[]} />
       )}
       
       {/* No results found state */}
